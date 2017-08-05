@@ -8,6 +8,9 @@
   <target name="undeploy" description="undeploy previous app" >
 
 		<delete file="C:/nar_mac/tools/apache-tomcat-7.0.52/webapps/helloworld.war"/>
+		<delete includeemptydirs="true">  
+       		<fileset dir="C:/nar_mac/tools/apache-tomcat-7.0.52/webapps/helloworld" includes="**/*"/>  
+       	</delete>
 
    </target>
    

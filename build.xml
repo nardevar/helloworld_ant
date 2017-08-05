@@ -1,0 +1,39 @@
+<project name="Helloworld" default="clean" basedir=".">
+    <description>
+        Build file to build Helloworld app
+    </description>
+ 
+<property file="build.properties"/>
+
+  <!--<target name="clean" description="clean up" >
+
+	<echo message="Hi, I'm inside clean target" />
+
+	<delete includeemptydirs="true">  
+       		<fileset dir="helloibm/sampleclean" includes="**/*"/>  
+       	</delete>
+       	
+       	<echo message="sampleclean is removed" />
+
+   </target>
+   -->
+   <target name="init">
+		<mkdir dir="dist" />
+	</target>
+   
+   <target name="war" depends="init">
+		<war destfile="dist/helloworld.war" webxml="helloworld/WEB-INF/web.xml">
+			<fileset dir="helloworld"/>
+			<lib dir="helloworld/WEB-INF/lib"/>
+		</war>
+	</target>
+	
+	<target name="deploy">
+		<copy todir="${apachewebapp}">
+		<resources>
+			<file file="dist/helloworld.war"/>
+		</resources>
+		</copy>
+	</target>
+	
+</project>

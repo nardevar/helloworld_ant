@@ -5,14 +5,9 @@
  
 <property file="build.properties"/>
 
-  <target name="undeploy" description="undeploy previous app" >
-
-		<delete file="C:/nar_mac/tools/apache-tomcat-7.0.52/webapps/helloworld.war"/>
-		<delete includeemptydirs="true" failonerror="false">  
-       		<fileset dir="C:/nar_mac/tools/apache-tomcat-7.0.52/webapps/helloworld" includes="**/*"/>  
-       	</delete>
-
-   </target>
+	<target name="clean" description="removes previous build" >
+		<delete file="dist/helloworld.war"/>
+	</target>
    
    <target name="init">
 		<mkdir dir="dist" />
@@ -25,6 +20,15 @@
 		</war>
 	</target>
 	
+	<target name="undeploy" description="undeploy previous app" >
+
+		<delete file="${apachewebapp}/helloworld.war"/>
+		<delete includeemptydirs="true" failonerror="false">  
+       		<fileset dir="${apachewebapp}/helloworld" includes="**/*"/>  
+       	</delete>
+
+   </target>
+   
 	<target name="deploy" depends="undeploy">
 		<copy todir="${apachewebapp}">
 		<resources>
